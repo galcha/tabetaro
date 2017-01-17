@@ -94,11 +94,14 @@ ply.draw=function()
 	rect(25,5,125, 10)
 	
 	if(ply.hungry < 30) then
-		color(3)
+		col=3
 	elseif(ply.hungry < 70) then
-		color(9)
+		col=9
 	else
-		color(8)
+		col=8
+	end
+	for i=0,4 do
+		pset(25+ply.hungry+1, 5+rnd(5),col)
 	end
 	rectfill(25,5,25+ply.hungry,10)
 	
@@ -335,9 +338,11 @@ function _draw()
 		spr(3, 22, 30)
 		spr(35, 32, 30)
 		print("combo for fullness", 42,31)
-		for i=0,50 do
-	 	circ(19-2+rnd(10), 45-2+rnd(10), 1, 9+flr(rnd(2)))
-	 end
+		for i=0,65+15*sin(3.14*2*clock*0.01) do
+	 	if(flr(rnd(2))==1) then sign=1 else sign=-1 end
+	 	if(flr(rnd(2))==1) then sign2=1 else sign2=-1 end 
+	 	 circ(22+sign*rnd(i/10), 49+sign2*rnd(i/10), 1, 9+flr(rnd(2)))
+	 	end
 		spr(19, 18, 45)
 		spr(35, 32, 45)
 		print("paper roll=max speed!", 42, 46)
@@ -387,8 +392,11 @@ function _draw()
 	
 	foreach(bonus, function(b)
 	 
-	 for i=0,50 do
-	 	circ(b.x-2+rnd(10), b.y-2+rnd(10), 1, 9+flr(rnd(2)))
+	 for i=0,65+15*sin(3.14*2*clock*0.01) do
+	 	if(flr(rnd(2))==1) then sign=1 else sign=-1 end
+	 	if(flr(rnd(2))==1) then sign2=1 else sign2=-1 end 
+	 	circ(b.x+3+sign*rnd(i/10), b.y+4+sign2*rnd(i/10), 1, 9+flr(rnd(2)))
+	 
 	 end
 	 
 		if(clock % 6 == 0) then
